@@ -15,8 +15,30 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Ciel D'or",
-  description: "Ciel D'or Restaurant",
+  title: "Ciel Dor",
+  description: "Ciel D’or Restaurant",
+  openGraph: {
+    title: "Ciel Dor - Fine Dining Restaurant",
+    description: "Experience luxury dining at Ciel D’or ",
+    url: "https://ciel-d-or.vercel.app", // change this after deployment
+    siteName: "Ciel Dor",
+    images: [
+      {
+        url: "https://ciel-d-or.vercel.app/og-image.jpg", // your OG image
+        width: 1200,
+        height: 630,
+        alt: "Ciel D’or Restaurant Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ciel Dor - Fine Dining Restaurant",
+    description: "Experience luxury dining at Ciel D’or ",
+    images: ["https://ciel-d-or.vercel.app/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
