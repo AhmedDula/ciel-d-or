@@ -161,7 +161,7 @@ function Menu() {
         </div>
         <div className="h-[60%] overflow-hidden">
           <Image
-            src={"/c.jpg"}
+            src={"/q2.jpg"}
             objectFit="cover"
             width={1200}
             height={400}

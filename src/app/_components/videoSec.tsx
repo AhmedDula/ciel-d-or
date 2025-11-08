@@ -35,15 +35,22 @@ function VideoSec() {
           start: "top+=70 bottom",
         },
       });
-      ScrollTrigger.create({
-        trigger: "#content",
-        start: "top top+=60",
-        end: "bottom-=10 top+=190",
-        pin: true,
-        pinSpacing: "margin",
-        scrub: 0,
-       
-      });
+      const mm = gsap.matchMedia();
+      mm.add(
+        { isDes: "(min-width:701px)", isMob: "(max-width:700px)" },
+        (context) => {
+          const { isDes, isMob } = context.conditions || {};
+          ScrollTrigger.create({
+            trigger: "#content",
+            start: isMob ? "top top+=100" : "top top+=60",
+            endTrigger: container.current,
+            end: isMob ? "bottom-=80 top+=190" : "bottom-=100 top+=190",
+            pin: true,
+            pinSpacing: "margin",
+            scrub: 0,
+          });
+        }
+      );
     },
     { scope: container, dependencies: [] }
   );
@@ -61,11 +68,14 @@ function VideoSec() {
       {/* الـ overlay */}
       <div className="absolute inset-0 bg-black/50" />
 
-      <div ref={videoWrapper} className=" w-full h-screen p-[3.3vw] sm:p-[2vw] ">
+      <div
+        ref={videoWrapper}
+        className=" w-full h-screen py-3 px-4 sm:p-[2vw] "
+      >
         {/* النص */}
         <div
           id="content"
-          className="h-full gap-2 flex flex-col text-[#d8cbb8] w-[60vw] sm:w-[25vw]"
+          className="h- gap-2 flex flex-col text-[#d8cbb8] w-[60vw] sm:w-[25vw]"
         >
           <h1
             id="head"
