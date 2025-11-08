@@ -16,46 +16,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import MobileNavbar from "./MobileNavbar";
 
-// For Mob
-
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
-
 export function Navbar() {
   const isMobile = useIsMobile();
   const [lastScrollY, setLastScrollY] = React.useState<number>(0);
@@ -82,101 +42,126 @@ export function Navbar() {
   }, [lastScrollY]);
 
   return (
-    <nav className="text-white">
+    <nav className="text-[#ffe3b9] ">
       <NavigationMenu
         viewport={isMobile}
         hidden={isMobile}
-        className=" fixed z-40  max-w-screen sm:grid place-items-center  hidden "
+        className="fixed z-40 max-w-screen sm:grid place-items-center hidden "
       >
         <NavigationMenuList
-          className={`fixed left-1/2 -translate-x-1/2 z-20 p-4 rounded-sm w-screen transition-all duration-1300 ease-in-out
-            ${scrollUp ? "top-0 opacity-100 bg-white/9" : "-top-30"}
-           ${lastScrollY < 45 ? "bg-transparent" : ""} `}
+          className={`fixed left-1/2 -translate-x-1/2 z-20 p-4 rounded-xs w-screen transition-all duration-1300 ease-in-out
+      ${scrollUp ? "top-0 opacity-100 bg-white/10 backdrop-blur-xs" : "-top-30"}
+      ${lastScrollY < 45 ? "bg-transparent" : "bg-white/10 shadow-sm "} `}
         >
-          <Link href="/"></Link>
+          <Link href="/">
+            <div className="font-bold text-xl ">Ciel D&apos;or</div>
+          </Link>
+          <span className=" ml-5 text-2xl">|</span>
           <NavigationMenuItem className="">
             <NavigationMenuTrigger className="bg-transparent">
               Home
             </NavigationMenuTrigger>
             <NavigationMenuContent className="">
-              <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild className="bg-amber-600">
+              <ul className=" grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] ">
+                <li className="row-span-3 ">
+                  <NavigationMenuLink
+                    asChild
+                    className=""
+                    style={{
+                      backgroundImage: `url('/33.jpg')`,
+                      backgroundSize: "cover",
+                    }}
+                  >
                     <Link
                       href="/"
-                      className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md md:p-6"
+                      className=" flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md md:p-6"
                     >
-                      <div className="mb-2 text-lg font-medium sm:mt-4">
-                        shadcn/ui
+                      <div className="mb-2 text-lg font-medium sm:mt-4 text-white">
+                        Ciel D&apos;or
                       </div>
-                      <p className="text-muted-foreground text-sm leading-tight">
-                        Beautifully designed components built with Tailwind CSS.
+                      <p className="text-white text-sm leading-tight">
+                        An exceptional dining experience in an elegant
+                        atmosphere. We serve the finest international cuisine
+                        with the highest quality standards.
                       </p>
                     </Link>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
+                <ListItem href="/about" title="About Us">
+                  Learn about our restaurant&apos;s story and our philosophy in
+                  food presentation.
                 </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
+                <ListItem href="/menu" title="Menu">
+                  Browse our exclusive food menu.
                 </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
+                <ListItem href="/reservation" title="Reservations">
+                  Book your table for an unforgettable experience.
                 </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Our Menu</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {components.map((component) => (
-                  <ListItem
-                    key={component.title}
-                    title={component.title}
-                    href={component.href}
-                  >
-                    {component.description}
-                  </ListItem>
-                ))}
+                <ListItem title="Appetizers" href="/menu/appetizers">
+                  A selection of delicious appetizers to start your meal.
+                </ListItem>
+                <ListItem title="Main Courses" href="/menu/main-courses">
+                  A wide variety of signature main dishes.
+                </ListItem>
+                <ListItem title="Drinks & Beverages" href="/menu/drinks">
+                  Refreshing drinks and fine beverages to complement your meal.
+                </ListItem>
+                <ListItem title="Desserts" href="/menu/desserts">
+                  Sweet endings with our exquisite dessert collection.
+                </ListItem>
+                <ListItem title="Chef's Specials" href="/menu/specials">
+                  Unique creations from our master chef.
+                </ListItem>
+                <ListItem title="Seasonal Menu" href="/menu/seasonal">
+                  Fresh dishes inspired by the current season.
+                </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuItem>
             <NavigationMenuLink
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link href="/docs">Docs</Link>
+              <Link href="/reservation">Reservations</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+
           <NavigationMenuItem className="hidden md:block">
-            <NavigationMenuTrigger>List</NavigationMenuTrigger>
+            <NavigationMenuTrigger>About</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[300px] gap-4">
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link href="#">
-                      <div className="font-medium">Components</div>
-                      <div className="text-muted-foreground">
-                        Browse all components in the library.
+                    <Link href="/about">
+                      <div className="font-medium">Our Story</div>
+                      <div className="text-[#d8cbb8]">
+                        Learn about Ciel D&apos;or&apos;s journey and vision.
                       </div>
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="#">
-                      <div className="font-medium">Documentation</div>
-                      <div className="text-muted-foreground">
-                        Learn how to use the library.
+                    <Link href="/chef">
+                      <div className="font-medium">Our Chef</div>
+                      <div className="text-[#d8cbb8]">
+                        Meet the master behind our culinary creations.
                       </div>
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="#">
-                      <div className="font-medium">Blog</div>
-                      <div className="text-muted-foreground">
-                        Read our latest blog posts.
+                    <Link href="/gallery">
+                      <div className="font-medium">Gallery</div>
+                      <div className="text-[#d8cbb8]">
+                        View photos of our restaurant and dishes.
                       </div>
                     </Link>
                   </NavigationMenuLink>
@@ -184,46 +169,20 @@ export function Navbar() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuItem className="hidden md:block">
-            <NavigationMenuTrigger>Simple</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[200px] gap-4">
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link href="#">Components</Link>
+                    <Link href="/contact">Visit Us</Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="#">Documentation</Link>
+                    <Link href="/events">Private Events</Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link href="#">Blocks</Link>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem className="hidden md:block">
-            <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-4">
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link href="#" className="flex-row items-center gap-2">
-                      <CircleHelpIcon />
-                      Backlog
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="#" className="flex-row items-center gap-2">
-                      <CircleIcon />
-                      To Do
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="#" className="flex-row items-center gap-2">
-                      <CircleCheckIcon />
-                      Done
-                    </Link>
+                    <Link href="/careers">Careers</Link>
                   </NavigationMenuLink>
                 </li>
               </ul>
@@ -248,7 +207,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <Link href={href}>
           <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <p className="text-[#d8cbb8] line-clamp-2 text-sm leading-snug">
             {children}
           </p>
         </Link>
